@@ -16,7 +16,7 @@ You can use the included `projector.py` as a library. This might end up on pip i
 
 It provides both a web interface, as well as a JSON API for interacting with the projector.
 
-![Changing source](/../screens/screens/source.png?raw=true) ![Main remote](/../screens/screens/main.png?raw=true) ![Changing presets](/../screens/screens/adjust.png?raw=true)
+![Changing source](/../screens/screens/source.png?raw=true) ![Changing presets](/../screens/screens/adjust.png?raw=true) ![Main remote](/../screens/screens/main.png?raw=true) 
 
 The webserver should be provided with the path to the serial port. It will then host on port `5000`.
 
