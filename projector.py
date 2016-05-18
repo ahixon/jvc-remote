@@ -313,8 +313,7 @@ class HD250 (Projector):
         return 'DLA-HD250'
 
 if __name__ == '__main__':
-    s = serial.Serial('/dev/ttyUSB0', 19200, parity='N', stopbits=1, timeout=1)
-    p = HD250 (s)
+    p = HD250 ('/dev/ttyUSB0')
 
     if p.ready:
         print ("currently in", p.mode, "mode")
