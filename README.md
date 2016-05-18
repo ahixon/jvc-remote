@@ -5,13 +5,31 @@ Remote control library and web server for JVC projectors.
 ## Dependencies
 
 * pyserial for communication with projector -- `pip install serial`
-* (optionally) Flask for web remote -- `pip install flask`
+* (optionally) Flask for web remote/API -- `pip install flask`
 
 ## Usage
 
-You can use the included projector.py as a library. This might end up on pip in the future.
+### Python Library
+You can use the included `projector.py` as a library. This might end up on pip in the future.
 
-The webserver should be provided with the path to the serial port. It will then host on port 5000.
+#### Web Remote
+
+It provides both a web interface, as well as a JSON API for interacting with the projector.
+
+The webserver should be provided with the path to the serial port. It will then host on port `5000`.
+
+#### JSON API
+
+All endpoints are currently GET.
+
+* `/on`, `/off` - turn the projector on and off.
+* `/status` - returns current power state, current input source (if any) and model number.
+* `/input/<source>` - sets the input source to <source>. You can list the available input sources using:
+* `/inputs` - lists available input source types and display names.
+* `/press/<button>` - simulate a remote control button press. You can list available button names using:
+* `/buttons` - lists available button names for the projector.
+
+Routes will return 200 on success as expected, 404 if a particular button or input source is unknown, or 501 if the projector is unavailble (disconnected or uncommunicable).
 
 ## Device support
 
