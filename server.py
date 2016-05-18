@@ -81,4 +81,4 @@ if __name__ == '__main__':
         sys.stderr.write ("Usage: %s [serial device]\n" % sys.argv[0])
     else:
         projector = HD250 (sys.argv[1], timeout=0.4)
-        app.run(debug=True, host='0.0.0.0')
+        app.run(host='0.0.0.0')
