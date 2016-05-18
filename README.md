@@ -1,6 +1,6 @@
 # jvc-remote
 
-Remote control library and web server for JVC projectors.
+Remote control library and web server for JVC projectors that communicate over RS232.
 
 ## Dependencies
 
