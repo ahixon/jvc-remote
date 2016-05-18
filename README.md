@@ -31,7 +31,7 @@ All endpoints are currently GET.
 * `/press/<button>` - simulate a remote control button press. You can list available button names using:
 * `/buttons` - lists available button names for the projector.
 
-Routes will return 200 on success as expected, 404 if a particular button or input source is unknown, or 501 if the projector is unavailble (disconnected or uncommunicable).
+Routes will return 200 on success *or* failure (check `success` field in returned JSON objects), 404 if a particular button or input source is unknown, or 501 if the projector is unavailble (disconnected or uncommunicable).
 
 ## Device support
 
