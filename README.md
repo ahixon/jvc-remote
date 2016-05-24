@@ -1,11 +1,10 @@
 # jvc-remote
 
-Remote control library and web server for JVC projectors that communicate over RS232.
+Remote control library and tiny web server for JVC projectors that communicate over RS232.
 
 ## Dependencies
 
 * pyserial for communication with projector -- `pip install serial`
-* (optionally) Flask for web remote/API -- `pip install flask`
 
 ## Usage
 
@@ -32,6 +31,30 @@ All endpoints are currently GET.
 * `/buttons` - lists available button names for the projector.
 
 Routes will return 200 on success *or* failure (check `success` field in returned JSON objects), 404 if a particular button or input source is unknown, or 501 if the projector is unavailble (disconnected or uncommunicable).
+
+## Running on OpenWRT
+
+This was tested on OpenWrt Chaos Calmer 15.05.1.
+
+Log into SSH, and do:
+```
+opkg install python-pyserial # auto-installes python-lite
+opkg install python-logging # needed for BaseHTTPServer
+opkg install python-codecs # needed for JSON - big
+```
+
+You'll also want to install the USB serial converter driver that you use. Some common ones:
+```
+opkg install kmod-usb-serial
+opkg install kmod-usb-serial-ftdi
+opkg install kmod-usb-serial-cp210x
+opkg install kmod-usb-serial-ch341
+opkg install kmod-usb-serial-pl2303
+```
+
+and finally, `opkg install unzip`. Download the master tarball somewhere that doesn't require HTTPS, then wget it onto the router and unzip. Then just run `server.py /dev/ttyUSB0` as usual.
+
+It might take a while at the start, and you'll get a bunch of `ValueError: unsupported hash type sha512` messages in the meantime, but don't fear.
 
 ## Device support
 
