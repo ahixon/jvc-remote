@@ -46,11 +46,22 @@
     <div class="panel panel-left panel-reveal">
       <div class="content">
         <div class="content-block-title">Input sources</div>
-          <div class="list-block onmode {% if state.input == None %}disabled{% endif %}">
+          <div class="list-block onmode disabled">
             <ul>
-              {% for source in sources %}
               <li>
-                <a href="/input/{{ source }}" data-source="{{ source }}" class="press-btn source item-link {% if source == state.input %}active{% endif %} list-button">{{ input_names[source] }}</a>
+                <a href="/input/s-video" data-source="s-video" class="press-btn source item-link list-button">S-Video</a>
+              </li>
+              <li>
+                <a href="/input/video" data-source="video" class="press-btn source item-link list-button">Video</a>
+              </li>
+              <li>
+                <a href="/input/computer" data-source="computer" class="press-btn source item-link list-button">Computer</a>
+              </li>
+              <li>
+                <a href="/input/hdmi1" data-source="hdmi1" class="press-btn source item-link list-button">HDMI 1</a>
+              </li>
+              <li>
+                <a href="/input/hdmi2" data-source="hdmi2" class="press-btn source item-link list-button">HDMI 2</a>
               </li>
               {% endfor %}
             </ul>
@@ -189,7 +200,11 @@
     </div>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/framework7/1.4.2/js/framework7.min.js"></script>
     <script>
-      document.projectorState = {{ state|tojson }}
+      document.projectorState = {
+        mode: 'unknown',
+        input: null,
+        model: 'Unknown'
+      }
     </script>
     <script>
       var projectorApp = new Framework7({
