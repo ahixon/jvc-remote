@@ -95,7 +95,7 @@ def remote_webapp (environ, start_response):
     routes = {
         'buttons': view_buttons,
         'inputs': view_inputs,
-        'press': lambda: press_button(shift_path_info (environ)),
+        'press': lambda: press(shift_path_info (environ)),
         'status': projector_status,
         'input': lambda: set_input(shift_path_info (environ)),
         'on': on,
@@ -119,7 +119,7 @@ def remote_webapp (environ, start_response):
             else:
                 headers = [('Content-type', 'application/json')]
         except WebException, ex:
-            status = ex.status
+            status = ex.code
             headers = [('Content-type', 'text/html')] 
             result = str(ex)
         except:
